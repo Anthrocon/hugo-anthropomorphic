@@ -314,32 +314,42 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
 }
 
 .tabs {
-	 margin-top: 16rem;
-	 margin-bottom: 16rem;
-	 border: 1rem solid var(--pico-color);
-	 overflow: hidden;
-	 display: flex;
-	 flex-wrap: wrap;
+    margin-top: var(--pico-spacing);
+    margin-bottom: var(--pico-spacing);
+    border: 0.1rem solid var(--pico-primary-border);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+	border-radius: var(--pico-border-radius);
 }
- .tabs .tab-content {
-	 order: 999;
-	 width: 100%;
-	 display: none;
+
+.tabs input.toggle {
+    display: none;
 }
- .tabs label {
-	 display: inline-block;
-	 padding: 8rem 16rem;
-	 border-bottom: 1rem transparent;
-	 cursor: pointer;
+
+.tabs .tab-content {
+    padding: var(--pico-spacing);
+    border-top: 0.1rem solid var(--pico-primary-border);
+    order: 999;
+    width: 100%;
+    display: none;
 }
- .tabs input[type="radio"]:checked + label {
-	 border-bottom: 1rem solid var(--pico-color);
+.tabs label {
+    display: inline-block;
+    padding: var(--pico-spacing);
+    border-bottom: .1rem transparent;
+    cursor: pointer;
 }
- .tabs input[type="radio"]:checked + label + .tab-content {
-	 display: block;
+.tabs input[type="radio"]:checked + label {
+    background-color: var(--pico-primary-border);
+    color: var(--pico-background-color);
+    border-bottom: .1rem solid var(--pico-primary-border);
 }
- .tabs input[type="radio"]:focus + label {
-	 outline-style: auto;
-	 outline-color: currentColor;
-	 outline-color: -webkit-focus-ring-color;
+.tabs input[type="radio"]:checked + label + .tab-content {
+    display: block;
+}
+.tabs input[type="radio"]:focus + label {
+    outline-style: auto;
+    outline-color: currentColor;
+    outline-color: -webkit-focus-ring-color;
 }
