@@ -348,6 +348,11 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
 .tabs input[type="radio"]:checked + label + .tab-content {
     display: block;
 }
+
+.tabs [type="radio"] ~ label:not(:last-of-type) {
+    margin-inline-end: 0;
+}
+
 .tabs input[type="radio"]:focus + label {
     outline-style: auto;
     outline-color: currentColor;
