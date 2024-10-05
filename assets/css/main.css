@@ -334,17 +334,20 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     width: 100%;
     display: none;
 }
+
 .tabs label {
     display: inline-block;
     padding: var(--pico-spacing);
     border-bottom: .1rem transparent;
     cursor: pointer;
 }
+
 .tabs input[type="radio"]:checked + label {
     background-color: var(--pico-primary-border);
     color: var(--pico-background-color);
     border-bottom: .1rem solid var(--pico-primary-border);
 }
+
 .tabs input[type="radio"]:checked + label + .tab-content {
     display: block;
 }
