@@ -312,3 +312,34 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
         object-fit: cover;
     }
 }
+
+.tabs {
+	 margin-top: 16rem;
+	 margin-bottom: 16rem;
+	 border: 1rem solid var(--pico-color);
+	 overflow: hidden;
+	 display: flex;
+	 flex-wrap: wrap;
+}
+ .tabs .tab-content {
+	 order: 999;
+	 width: 100%;
+	 display: none;
+}
+ .tabs label {
+	 display: inline-block;
+	 padding: 8rem 16rem;
+	 border-bottom: 1rem transparent;
+	 cursor: pointer;
+}
+ .tabs input[type="radio"]:checked + label {
+	 border-bottom: 1rem solid var(--pico-color);
+}
+ .tabs input[type="radio"]:checked + label + .tab-content {
+	 display: block;
+}
+ .tabs input[type="radio"]:focus + label {
+	 outline-style: auto;
+	 outline-color: currentColor;
+	 outline-color: -webkit-focus-ring-color;
+}
