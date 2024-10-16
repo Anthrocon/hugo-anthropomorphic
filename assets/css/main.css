@@ -312,3 +312,53 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
         object-fit: cover;
     }
 }
+
+.tabs {
+    margin-top: var(--pico-spacing);
+    margin-bottom: var(--pico-spacing);
+    border: 0.1rem solid var(--pico-primary-border);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: var(--pico-border-radius);
+}
+
+.tabs input.toggle {
+    position: absolute;
+    opacity: 0;
+}
+
+.tabs .tab-content {
+    padding: var(--pico-spacing);
+    border-top: 0.1rem solid var(--pico-primary-border);
+    order: 999;
+    width: 100%;
+    display: none;
+}
+
+.tabs label {
+    display: inline-block;
+    padding: var(--pico-spacing);
+    border-bottom: .1rem transparent;
+    cursor: pointer;
+}
+
+.tabs input[type="radio"]:checked + label {
+    background-color: var(--pico-primary-border);
+    color: var(--pico-background-color);
+    border-bottom: .1rem solid var(--pico-primary-border);
+}
+
+.tabs input[type="radio"]:checked + label + .tab-content {
+    display: block;
+}
+
+.tabs [type="radio"] ~ label:not(:last-of-type) {
+    margin-inline-end: 0;
+}
+
+.tabs input[type="radio"]:focus + label {
+    outline-style: auto;
+    outline-color: currentColor;
+    outline-color: -webkit-focus-ring-color;
+}

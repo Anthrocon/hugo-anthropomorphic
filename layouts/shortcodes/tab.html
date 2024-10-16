@@ -1,0 +1,25 @@
+{{/* Shortcode renders the content for each tab.
+Refuses to render if it's not in the tabs shortcode.
+Takes a variable that is implemented as the name of the tab.
+
+  example:
+  {{% tabs %}}
+    {{% tab "tab one" %}}
+    # tab one title
+    tab one content
+    {{% /tab %}}
+  {{% /tabs %}}
+*/}}
+
+{{ if .Parent }}
+  {{ $name := .Get 0 }}
+  {{ $group := printf "tabs-%d" .Parent.Ordinal }}
+
+  {{ if not (.Parent.Scratch.Get $group) }}
+    {{ .Parent.Scratch.Set $group slice }}
+  {{ end }}
+
+  {{ .Parent.Scratch.Add $group (dict "Name" $name "Content" .Inner) }}
+{{ else }}
+  {{ errorf "%q: 'tab' shortcode must be inside 'tabs' shortcode" .Page.Path }}
+{{ end }}
