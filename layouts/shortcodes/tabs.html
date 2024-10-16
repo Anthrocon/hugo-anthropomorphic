@@ -6,14 +6,14 @@
   <input
       class="toggle"
       name="{{ $group }}"
-      tabindex="1"
+      tabindex="0"
       type="radio"
       id="{{ printf "%s-%d" $group $index }}"
       {{ if not $index }}checked="checked"{{ end }}/>
   <label for="{{ printf "%s-%d" $group $index }}">
     {{- $tab.Name -}}
   </label>
-  <div class="tab-content" tabindex="1">
+  <div class="tab-content" tabindex="0">
     {{- .Content | safeHTML -}}
   </div>
 {{- end -}}
