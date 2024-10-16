@@ -320,7 +320,7 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
-	border-radius: var(--pico-border-radius);
+    border-radius: var(--pico-border-radius);
 }
 
 .tabs input.toggle {
