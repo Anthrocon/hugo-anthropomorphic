@@ -1,3 +1,15 @@
+{{/* Shortcode renders a set of tabs using input and label manipulation through CSS.
+Tab takes a variable to be able to name the tab.
+
+  {{% tabs %}}
+    {{% tab "tab one" %}}
+    # tab one title
+    tab one content
+    {{% /tab %}}
+  {{% /tabs %}}
+
+*/}}
+
 {{- if .Inner }}{{ end -}}
 {{- $group := printf "tabs-%d" .Ordinal -}}
 
