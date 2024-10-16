@@ -3,11 +3,17 @@
 
 <div class="tabs">
 {{- range $index, $tab := .Scratch.Get $group -}}
-  <input type="radio" class="toggle" name="{{ $group }}" id="{{ printf "%s-%d" $group $index }}" {{ if not $index }}checked="checked"{{ end }} />
+  <input
+      class="toggle"
+      name="{{ $group }}"
+      tabindex="1"
+      type="radio"
+      id="{{ printf "%s-%d" $group $index }}"
+      {{ if not $index }}checked="checked"{{ end }}/>
   <label for="{{ printf "%s-%d" $group $index }}">
     {{- $tab.Name -}}
   </label>
-  <div class="tab-content">
+  <div class="tab-content" tabindex="1">
     {{- .Content | safeHTML -}}
   </div>
 {{- end -}}
