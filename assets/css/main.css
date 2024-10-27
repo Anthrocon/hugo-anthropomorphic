@@ -286,6 +286,10 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     flex-direction: column;
 }
 
+.main-section section a {
+    font-weight: bolder;
+}
+
 @media (min-width: 1024px) {
     .main-section {
         flex-direction: row;
