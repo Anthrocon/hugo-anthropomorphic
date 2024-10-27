@@ -77,7 +77,7 @@ Press Ctrl+C to stop
 You can now visit [the site locally](http://localhost:1313/).
 Press Ctrl + C to stop the server when you're done.
 
-## License(s)
+## License
 
 ### Code
 
@@ -85,4 +85,4 @@ Press Ctrl + C to stop the server when you're done.
 
 ### Website content
 
-- All rights reserved. © Copyright Anthrocon, Inc., 2024.
+No license implied. All rights reserved copyright Anthrocon, Inc., 2024.
