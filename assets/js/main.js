@@ -37,7 +37,8 @@
           fontSize: `${mew.size}px`,
           color: mew.color,
           zIndex: '100',
-          position: 'absolute'
+          position: 'absolute',
+          pointerEvents: 'none'
         });
       }
     });
@@ -63,7 +64,7 @@
       y: posY,
       scale: 1,
       alpha: 1,
-      size: 16,
+      size: 18,
       color: getRandomColor(),
       flipX,
       rotation
