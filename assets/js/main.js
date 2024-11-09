@@ -37,7 +37,8 @@
           fontSize: `${mew.size}px`,
           color: mew.color,
           zIndex: '100',
-          position: 'absolute'
+          position: 'absolute',
+          pointerEvents: 'none'
         });
       }
     });
