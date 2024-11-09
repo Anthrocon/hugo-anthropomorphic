@@ -1,16 +1,26 @@
 {{- with resources.Get "js/main.js" }}
   {{- if eq hugo.Environment "development" }}
     {{- with . | js.Build }}
-      <script src="{{ .RelPermalink }}"></script>
+<script>
+  if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var script = document.createElement('script');
+    script.src = '{{ .RelPermalink }}';
+    document.head.appendChild(script);
+  }
+</script>
     {{- end }}
   {{- else }}
     {{- $opts := dict "minify" true }}
     {{- with . | js.Build $opts | fingerprint }}
-      <script
-        src="{{ .RelPermalink }}"
-        integrity="{{- .Data.Integrity }}"
-        crossorigin="anonymous"
-      ></script>
+<script>
+  if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var script = document.createElement('script');
+    script.src = '{{ .RelPermalink }}';
+    script.integrity = '{{ .Data.Integrity }}';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  }
+</script>
     {{- end }}
   {{- end }}
-{{- end }}
+{{- end -}}
