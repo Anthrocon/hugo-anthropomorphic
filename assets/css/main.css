@@ -286,7 +286,7 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     flex-direction: column;
 }
 
-.main-section section a {
+.main-section section a:not([role=button]) {
     font-weight: bolder;
 }
 
