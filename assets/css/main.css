@@ -119,6 +119,10 @@ details + hr {
 }
 
 @media (min-width: 1280px) {
+    :root {
+        scroll-padding-top: 140px;
+    }
+
     .header:not(.wide) {
         display: none;
     }
