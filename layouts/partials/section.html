@@ -6,12 +6,12 @@
                 <li><strong>
                     {{- if or .IsSection .IsPage }}
                         {{- with .FirstSection }}
-                            {{- .File.ContentBaseName }}
+                            {{- .File.ContentBaseName | title }}
                         {{- end }}
                     {{- end -}}
                 </strong></li>
                 {{- range where .FirstSection.RegularPagesRecursive.ByWeight "LinkTitle" "ne" "" }}
-                <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+                <li><a href="{{ .RelPermalink }}">{{ .LinkTitle | title }}</a></li>
                 {{- end }}
             </ul>
         </nav>
