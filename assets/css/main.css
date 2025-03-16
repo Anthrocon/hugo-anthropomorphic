@@ -285,13 +285,13 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     --pico-underline: var(--pico-contrast-hover-underline);
 }
 
+main section a:not([role=button]) {
+    font-weight: bolder;
+}
+
 .main-section {
     display: flex;
     flex-direction: column;
-}
-
-.main-section section a:not([role=button]) {
-    font-weight: bolder;
 }
 
 @media (min-width: 1024px) {
