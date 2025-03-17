@@ -2,7 +2,7 @@
 {{- partial "main.html" . }}
 <hr>
 <div style="text-align: center;">
-  <h2>Recent news</h2>
+  <h2>Recent News</h2>
 </div>
 <div class="grid featured">
   {{- range first 6 (where .Site.Pages "Section" "news") }}
@@ -20,6 +20,6 @@
   {{- end }}
 </div>
 <div style="text-align: right;">
-  <a href="/news">Read more Recent News</a>
+  <strong><a href="/news">Read More Recent News</a></strong>
 </div>
 {{- end -}}
