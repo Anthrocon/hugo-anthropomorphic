@@ -1,6 +1,7 @@
 :root {
     --pico-font-family-sans-serif: "Poppins", sans-serif, var(--pico-font-family-emoji);
-    --pico-block-spacing-vertical: calc(1.5 * var(--pico-spacing));
+    --pico-typography-spacing-vertical: 1.25rem;
+    --pico-block-spacing-vertical: calc(1.25 * var(--pico-spacing));
     --banner-height: 600px;
 }
 
@@ -13,43 +14,47 @@ h6 {
     --pico-font-family: "Raleway", sans-serif, var(--pico-font-family-emoji);
 }
 
-h2,
-h3 {
-    text-transform: uppercase;
-}
-
 h1 {
-    --pico-line-height: 1.375;
+    --pico-line-height: 1.5;
+    text-align: center;
 }
 
 h2 {
-    --pico-line-height: 1.45;
-}
-
-h3 {
     --pico-line-height: 1.525;
 }
 
+.content:not(.news) h2 {
+    text-align: center;
+}
+
+h3 {
+    --pico-line-height: 1.55;
+}
+
 h4 {
-    --pico-line-height: 1.6;
+    --pico-line-height: 1.575;
 }
 
 h5 {
-    --pico-line-height: 1.675;
+    --pico-line-height: 1.6;
 }
 
 h6 {
-    --pico-line-height: 1.75;
+    --pico-line-height: 1.625;
 }
 
 hr {
-    margin: calc(2.5 * var(--pico-typography-spacing-vertical)) 0;
+    margin: calc(2.5 * var(--pico-typography-spacing-vertical)) 0 calc(2 * var(--pico-typography-spacing-vertical));
     border-top-width: 4px;
 }
 
 details + hr {
-    margin: calc(1.5 * var(--pico-typography-spacing-vertical)) 0;
+    margin: calc(1.25 * var(--pico-typography-spacing-vertical)) 0;
     border-top-width: 1.6px;
+}
+
+.content a:not([role=button]) {
+    font-weight: bolder;
 }
 
 @media (min-width: 768px) {
@@ -88,6 +93,17 @@ details + hr {
 
 .grid img {
     width: 100%;
+}
+
+.grid div {
+    container-type: inline-size;
+}
+
+@container (min-width: 100px) {
+    .grid img {
+        height: 60cqi;
+        object-fit: cover;
+    }
 }
 
 .grid > article {
@@ -257,6 +273,26 @@ details + hr {
     text-shadow: black 0 0 1rem;
 }
 
+.content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+    .content-container {
+        flex-direction: row;
+    }
+
+    .nav-section {
+        width: 16rem;
+        margin-right: var(--pico-grid-column-gap);
+    }
+}
+
+.content {
+    flex: 1;
+}
+
 footer {
     text-align: center;
 }
@@ -285,88 +321,53 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     --pico-underline: var(--pico-contrast-hover-underline);
 }
 
-main section a:not([role=button]) {
-    font-weight: bolder;
-}
-
-.main-section {
-    display: flex;
-    flex-direction: column;
-}
-
-@media (min-width: 1024px) {
-    .main-section {
-        flex-direction: row;
-    }
-
-    .nav-section {
-        width: 16rem;
-        margin-right: var(--pico-grid-column-gap);
-    }
-}
-
 .social {
     font-size: 2em;
-    line-height: 0.03125em;
-}
-
-.grid div {
-    container-type: inline-size;
-}
-
-@container (min-width: 100px) {
-    .grid img {
-        height: 60cqi;
-        object-fit: cover;
-    }
 }
 
 .tabs {
-    margin-top: var(--pico-spacing);
-    margin-bottom: var(--pico-spacing);
-    border: 0.1rem solid var(--pico-primary-border);
-    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
+    margin-top: var(--pico-spacing);
+    margin-bottom: var(--pico-spacing);
+    border: 2px solid var(--pico-primary-border);
     border-radius: var(--pico-border-radius);
-}
-
-.tabs input.toggle {
-    position: absolute;
-    opacity: 0;
-}
-
-.tabs .tab-content {
-    padding: var(--pico-spacing);
-    border-top: 0.1rem solid var(--pico-primary-border);
-    order: 999;
-    width: 100%;
-    display: none;
-}
-
-.tabs label {
-    display: inline-block;
-    padding: var(--pico-spacing);
-    border-bottom: .1rem transparent;
-    cursor: pointer;
-}
-
-.tabs input[type="radio"]:checked + label {
-    background-color: var(--pico-primary-border);
-    color: var(--pico-background-color);
-    border-bottom: .1rem solid var(--pico-primary-border);
-}
-
-.tabs input[type="radio"]:checked + label + .tab-content {
-    display: block;
+    overflow: hidden;
 }
 
 .tabs [type="radio"] ~ label:not(:last-of-type) {
     margin-inline-end: 0;
 }
 
-.tabs input[type="radio"]:focus + label {
+.tabs [type="radio"]:checked + label {
+    background-color: var(--pico-primary-background);
+    color: var(--pico-color);
+}
+
+.tabs [type="radio"]:checked + label + .tab-content {
+    display: block;
+}
+
+.tabs [type="radio"]:focus + label {
     outline-style: auto;
-    outline-color: currentColor;
     outline-color: -webkit-focus-ring-color;
+    outline-color: currentColor;
+}
+
+.tabs label {
+    display: inline-block;
+    padding: var(--pico-spacing);
+}
+
+.tabs .toggle {
+    opacity: 0;
+    position: absolute;
+}
+
+.tabs .tab-content {
+    display: none;
+    width: 100%;
+    padding: var(--pico-spacing);
+    border-top: 1px solid var(--pico-primary-border);
+    order: 1;
 }
