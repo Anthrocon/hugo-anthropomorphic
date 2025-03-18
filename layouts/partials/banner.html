@@ -54,9 +54,9 @@
     {{- $filter = " NearestNeighbor" }}
 {{- end }}
 
-{{- $position := "33%" }}
+{{- $position := "" }}
 {{- with .Params.banner_position }}
-    {{- $position = . }}
+    {{- $position = printf " style=\"object-position: 50%% %s;\"" . }}
 {{- end }}
 
 {{- $cssWidth := (mul $src.Width (div (float $cssHeight) $src.Height)) | math.Ceil | int }}
@@ -100,7 +100,7 @@
                             {{- ($src.Process (printf "resize %sx jpg%s" . $filter)).RelPermalink }} {{ . }}w
                         {{- end }}
                     {{- end }}" sizes="{{ $htmlSizes }}">
-                <img style="object-position: 50% {{ $position }};" src="
+                <img {{- $position | safeHTMLAttr }} src="
                     {{- ($src.Process (printf "resize %sx jpg%s" $basicWidth $filter)).RelPermalink }}" alt="
                     {{- with .Params.banner_alt }}
                         {{- . }}
