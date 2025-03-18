@@ -53,6 +53,22 @@ details + hr {
     border-top-width: 1.6px;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
 .content a:not([role=button]) {
     font-weight: bolder;
 }
