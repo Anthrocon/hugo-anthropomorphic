@@ -341,7 +341,7 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
 
 .tabs [type="radio"]:checked + label {
     background-color: var(--pico-primary-background);
-    color: var(--pico-color);
+    color: var(--pico-primary-inverse);
 }
 
 .tabs [type="radio"]:checked + label + .tab-content {
