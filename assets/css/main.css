@@ -48,6 +48,11 @@ hr {
     border-top-width: 4px;
 }
 
+article header > :last-child,
+article footer > :last-child {
+    margin-bottom: 0;
+}
+
 details + hr {
     margin: calc(1.25 * var(--pico-typography-spacing-vertical)) 0;
     border-top-width: 1.6px;

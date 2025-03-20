@@ -1,0 +1,20 @@
+{{/*
+    Shortcode to format content into card.
+
+    "<--->"
+    Optional. Magic separator to split content into card header, body, and footer.
+*/}}
+
+{{- $opts := dict "display" "block" }}
+{{- $element := split .Inner "<--->" }}
+<article>
+    {{- if index $element 1 }}
+    <header>{{ $.Page.RenderString $opts (index $element 0) }}</header>
+    {{ $.Page.RenderString $opts (index $element 1) }}
+    {{- else }}
+    {{ $.Page.RenderString $opts (index $element 0) }}
+    {{- end }}
+    {{- with index $element 2 }}
+    <footer>{{ $.Page.RenderString $opts . }}</footer>
+    {{- end }}
+</article>

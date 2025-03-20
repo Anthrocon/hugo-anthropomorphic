@@ -86,7 +86,7 @@
 {{- $cssColScale := 1.0 }}
 {{- $htmlSizes := "" }}
 {{- with .Parent }}
-    {{- if eq .Name "columns" }}
+    {{- if or (eq .Name "columns") (eq .Parent.Name "columns") }}
         {{- $cssColScale = 0.5 }}
 
         {{- range $k, $e := $cssBreaks }}
