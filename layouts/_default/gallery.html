@@ -1,0 +1,19 @@
+{{- define "main" }}
+{{- partial "banner.html" . }}
+<div class="content">
+    {{ .Content }}
+</div>
+<div>
+    {{- range .Params.gallery }}
+    {{- $hint := "" }}
+    {{- with .hint }}
+    {{- $hint = printf " %s" . }}
+    {{- end }}
+    <img src="{{ (($.Resources.Get .image).Process (printf " resize 480x webp%s" $hint)).RelPermalink }}"
+        alt="{{ .alt }}">
+    {{- end }}
+</div>
+<div class="content">
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+</div>
+{{- end -}}
