@@ -95,3 +95,57 @@
 
   initialize();
 })();
+
+const lightboxEnabled = document.querySelectorAll('.lightbox-enabled');
+const lightboxArray = Array.from(lightboxEnabled);
+const lastImage = lightboxArray.length - 1;
+const lightboxContainer = document.querySelector('.lightbox-container');
+const lightboxImage = document.querySelector('.lightbox-image');
+
+const lightboxBtns = document.querySelectorAll('.lightbox-btn');
+const lightboxBtnLeft = document.querySelector('#left');
+const lightboxBtnRight = document.querySelector('#right');
+let activeImage;
+
+const credits = document.querySelector('.p-mobile');
+
+const showLightBox = () => {lightboxContainer.classList.add("active")}
+const hideLightBox = () => {lightboxContainer.classList.remove("active")}
+
+const setActiveImage = (image) => {
+  lightboxImage.src = image.dataset.imagesrc;
+  activeImage = lightboxArray.indexOf(image);
+  credits.innerHTML = "   " + image.alt;
+}
+
+const transitionSlidesLeft = () => {
+  lightboxBtnLeft.focus();
+  activeImage === 0 ? setActiveImage(lightboxArray[lastImage]) : setActiveImage(lightboxArray[activeImage - 1]);
+}
+
+const transitionSlidesRight = () => {
+  lightboxBtnRight.focus();
+  activeImage === lastImage ? setActiveImage(lightboxArray[0]) : setActiveImage(lightboxArray[activeImage + 1]);
+}
+
+const transitionSlideHandler = (moveItem) => {
+  moveItem.includes('left') ? transitionSlidesLeft() : transitionSlidesRight();
+}
+
+lightboxEnabled.forEach(image => {
+  image.addEventListener('click', (e) => {
+    console.log(e.target);
+    showLightBox()
+    setActiveImage(image);
+  })
+})
+
+lightboxContainer.addEventListener('click', () => { hideLightBox() })
+
+lightboxBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    transitionSlideHandler(e.currentTarget.id);
+    // console.log(e.currentTarget.id)
+  })
+})
