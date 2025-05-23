@@ -540,7 +540,6 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     background-color: var(--black-faded);
     display: grid;
     place-items: center;
-    padding: .5rem;
     z-index: 100;
     opacity: 0;
     pointer-events: none;
@@ -589,11 +588,6 @@ footer nav a:not([role=button]):is(:hover, :active, :focus) {
     right: 5px;
     background-color: transparent;
     border-color: transparent;
-}
-
-.lightbox {
-    position: relative;
-    height: 100%;
 }
 
 @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
