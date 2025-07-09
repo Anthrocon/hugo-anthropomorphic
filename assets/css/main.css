@@ -5,12 +5,6 @@
     --banner-height: 600px;
 }
 
-@media (max-width: 567px) {
-    :root {
-        --banner-height: 800px;
-    }
-}
-
 h1,
 h2,
 h3,
