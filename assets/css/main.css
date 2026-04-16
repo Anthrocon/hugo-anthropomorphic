@@ -2,7 +2,7 @@
     --pico-font-family-sans-serif: "Poppins", sans-serif, var(--pico-font-family-emoji);
     --pico-typography-spacing-vertical: 1.25rem;
     --pico-block-spacing-vertical: calc(1.25 * var(--pico-spacing));
-    --banner-height: 600px;
+    --banner-height: 800px;
 }
 
 h1,
@@ -293,6 +293,14 @@ details + hr {
     text-align: right;
     white-space: nowrap;
     text-shadow: black 0 0 1rem;
+}
+
+.banner .logo {
+    width: calc(var(--banner-height)/3);
+}
+
+.banner .grid {
+    align-items: center;
 }
 
 .content-container {

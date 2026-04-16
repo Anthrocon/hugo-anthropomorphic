@@ -118,12 +118,24 @@
         </div>
         {{- with .Params.banner_title }}
         <div>
+            {{- with $.Params.banner_logo }}
+            <img class="logo" src="{{.}}" />
+            {{- end }}
             <h1>{{ . }}</h1>
+            {{- with $.Params.banner_dates }}
+            <h2>{{ . }}</h2>
+            {{- end }}
             {{- with $.Params.banner_caption }}
             {{ . | $.RenderString (dict "display" "block") }}
             {{- end }}
             {{- with $.Params.banner_button }}
-            <p><a role="button" href="{{ $.Params.banner_button_link }}">{{ . }}</a></p>
+            <div class="grid">
+            <a role="button" href="{{ $.Params.banner_button_link }}">{{ . }}</a>
+            {{- end }}
+            {{- with $.Params.banner_button_two }}
+            <a role="button" href="{{ $.Params.banner_button__link }}">{{ . }}</a>
+            {{- else }}
+            </div>
             {{- end }}
         </div>
         {{- end }}
