@@ -27,7 +27,11 @@
 
     attrlink
         URL for attr link.
+
+    passthrough
+        Don't compress the image, just passthrough.
 */}}
+
 
 {{- $cssBreaks := slice 1536 1280 1024 768 576 }}
 {{- $cssContainers := slice 1450 1200 950 700 510 576 }}
@@ -45,6 +49,7 @@
 {{- $caption := "" }}
 {{- $attr := "" }}
 {{- $attrlink := "" }}
+{{- $passthrough := "" }}
 {{- if .IsNamedParams }}
     {{- $src = .Page.Resources.Get (.Get "src") }}
     {{- if not $src }}
@@ -74,6 +79,8 @@
     {{- $attr = .Get "attr" }}
 
     {{- $attrlink = .Get "attrlink" }}
+
+    {{- $passthrough = .Get "passthrough" }}
 {{- else }}
     {{- $src = .Page.Resources.Get (.Get 0) }}
     {{- if not $src }}
@@ -82,6 +89,16 @@
 
     {{- $alt = .Get 1 }}
 {{- end }}
+
+{{- if $passthrough }}
+{{- if $link }}<a href="{{ $link }}">{{ end }}
+<img
+    src="{{ $src.RelPermalink }}"
+    alt="{{ $alt }}"
+    width="{{ $src.Width }}"
+    height="{{ $src.Height }}">
+{{- if $link }}</a>{{ end }}
+{{- else }}
 
 {{- $cssColScale := 1.0 }}
 {{- $htmlSizes := "" }}
@@ -217,3 +234,5 @@
     </figcaption>
 </figure>
 {{- end -}}
+
+{{- end }}
