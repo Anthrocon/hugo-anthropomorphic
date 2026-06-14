@@ -83,6 +83,16 @@
     {{- $alt = .Get 1 }}
 {{- end }}
 
+{{- if $link }}
+    {{- $linkRes := .Page.Resources.Get $link }}
+    {{- if not $linkRes }}
+        {{- $linkRes = resources.Get (printf "images/%s" $link) }}
+    {{- end }}
+    {{- if $linkRes }}
+        {{- $link = $linkRes.RelPermalink }}
+    {{- end }}
+{{- end }}
+
 {{- $cssColScale := 1.0 }}
 {{- $htmlSizes := "" }}
 {{- with .Parent }}
