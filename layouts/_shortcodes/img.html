@@ -182,7 +182,7 @@
             {{- end }}
             {{- $link = ($linkRes.Process (printf "resize %dx jpg%s" $maxLinkW $filter)).RelPermalink }}
         {{- else }}
-            {{- $link = $linkRes.RelPermalink }}
+            {{- $link = ($linkRes.Process (printf "resize %dx" $linkRes.Width)).RelPermalink }}
         {{- end }}
     {{- end }}
 {{- end }}
