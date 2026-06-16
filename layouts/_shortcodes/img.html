@@ -17,7 +17,7 @@
         Additional image processing parameters.
 
     link
-        URL for image link.
+        URL for image link or "self" to self link.
 
     caption
         Markdown appears below image.
@@ -27,8 +27,6 @@
 
     attrlink
         URL for attr link.
-    link_target
-        Optional. "processed" (default) or "original". Controls whether the link resolves to the largest processed version or the original source file.
 */}}
 
 {{- $cssBreaks := slice 1536 1280 1024 768 576 }}
@@ -70,6 +68,9 @@
     {{- end }}
 
     {{- $link = .Get "link" }}
+    {{- if eq $link "self" }}
+        {{- $link = ($src.Process (printf "resize %dx jpg%s" (math.Min $src.Width 2100 | int) $filter)).RelPermalink }}
+    {{- end }}
 
     {{- $caption = .Get "caption" }}
 
@@ -166,25 +167,6 @@
     {{- end }}
 {{- else }}
     {{- $filter = " NearestNeighbor" }}
-{{- end }}
-
-{{- if $link }}
-    {{- $linkRes := .Page.Resources.Get $link }}
-    {{- if not $linkRes }}
-        {{- $linkRes = resources.Get (printf "images/%s" $link) }}
-    {{- end }}
-    {{- if $linkRes }}
-        {{- $linkTarget := $.Get "link_target" | default "processed" }}
-        {{- if eq $linkTarget "processed" }}
-            {{- $maxLinkW := mul (index $cssContainers 0) (index $cssScales (sub (len $cssScales) 1)) | math.Ceil | int }}
-            {{- if lt $linkRes.Width $maxLinkW }}
-                {{- $maxLinkW = $linkRes.Width }}
-            {{- end }}
-            {{- $link = ($linkRes.Process (printf "resize %dx jpg%s" $maxLinkW $filter)).RelPermalink }}
-        {{- else }}
-            {{- $link = ($linkRes.Process (printf "resize %dx" $linkRes.Width)).RelPermalink }}
-        {{- end }}
-    {{- end }}
 {{- end }}
 
 {{- $lqip := $src.Process (printf "resize 24x jpg%s" $filter) }}
