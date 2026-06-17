@@ -169,15 +169,11 @@
     {{- $filter = " NearestNeighbor" }}
 {{- end }}
 
-{{- $lqip := $src.Process (printf "resize 24x jpg%s" $filter) }}
-{{- $lqipB64 := $lqip.Content | base64Encode }}
-{{- $lqipDiv := printf "background-image: url(data:image/jpeg;base64,%s);" $lqipB64 }}
-
 {{- if or $caption $attr }}
 <figure{{ with $fClass }} class="{{ . }}"{{ end }}>
-    <div class="lqip" style="{{ $lqipDiv | safeCSS }}">
+    <div class="lqip">
 {{- else }}
-<div class="lqip{{ with $fClass }} {{ . }}{{ end }}" style="{{ $lqipDiv | safeCSS }}">
+<div class="lqip{{ with $fClass }} {{ . }}{{ end }}">
 {{- end }}
         {{- with $link }}
         <a href="{{ . }}">
