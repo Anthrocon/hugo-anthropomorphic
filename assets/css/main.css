@@ -108,6 +108,10 @@ details + hr {
     margin-bottom: var(--pico-typography-spacing-vertical);
 }
 
+.grid a {
+    width: 69%;
+}
+
 .grid .lqip {
     width: initial;
 }
@@ -293,6 +297,10 @@ details + hr {
     text-align: right;
     white-space: nowrap;
     text-shadow: black 0 0 1rem;
+}
+
+.banner-atcon, .banner-atcon .lqip {
+    height: calc(var(--banner-height) + 200px);
 }
 
 .content-container {

@@ -16,6 +16,10 @@
     banner_position
         Default "33%". One of top, center, bottom, or <length-percentage>. Vertical position of image.
 
+    banner_atcon
+        Default "false". Enables CSS to make the main banner a little taller for
+        the main page without messing all the other banners up.
+
     banner_title
         h1 title renders centered in banner.
 
@@ -81,9 +85,15 @@
 {{- $lqip := $src.Process (printf "resize 24x jpg%s" $filter) }}
 {{- $lqipB64 := $lqip.Content | base64Encode }}
 {{- $lqipDiv := printf "background-image: url(data:image/jpeg;base64,%s);" $lqipB64 }}
+{{- $atCon := .Params.banner_atcon | default false }}
+
 
 <header data-theme="dark">
+    {{- if $atCon }}
+    <div class="banner banner-atcon">
+    {{- else }}
     <div class="banner">
+    {{- end }}
         <div class="lqip" style="{{ $lqipDiv | safeCSS }}">
             <picture>
                 <source type="image/webp" srcset="
