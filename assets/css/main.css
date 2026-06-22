@@ -303,6 +303,18 @@ details + hr {
     height: calc(var(--banner-height) + 200px);
 }
 
+.banner-atcon h1,
+.banner-atcon > div > p {
+    text-shadow:
+        0 0 0.1em black,
+        0 0 0.1em black,
+        0 0 2em black;
+}
+
+.banner-atcon .grid {
+    grid-row-gap: 0px;
+}
+
 .content-container {
     display: flex;
     flex-direction: column;
