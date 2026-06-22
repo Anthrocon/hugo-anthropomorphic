@@ -315,6 +315,10 @@ details + hr {
     grid-row-gap: 0px;
 }
 
+.banner-atcon img {
+    filter: brightness(42.0%);
+}
+
 .content-container {
     display: flex;
     flex-direction: column;
