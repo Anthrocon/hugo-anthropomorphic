@@ -304,6 +304,8 @@ details + hr {
 }
 
 .banner-atcon h1,
+.banner-atcon h2,
+.banner-atcon h3,
 .banner-atcon > div > p {
     text-shadow:
         0 0 0.1em black,
@@ -313,6 +315,48 @@ details + hr {
 
 .banner-atcon .grid {
     grid-row-gap: 0px;
+    text-align: left;
+}
+
+.banner-atcon .grid h1,
+.banner-atcon .grid h2,
+.banner-atcon .grid h3 {
+    text-align: left;
+}
+
+.banner-atcon .grid img {
+    max-height: 40vh;
+    max-width: 40vw;
+    height: auto;
+    object-fit: contain;
+    filter: none;
+}
+
+.banner-atcon .grid .lqip {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+}
+
+@media (max-width: 767px) {
+    .banner-atcon .grid {
+        display: block;
+    }
+
+    .banner-atcon .grid > div:first-child {
+        text-align: center;
+        margin-bottom: var(--pico-spacing);
+    }
+
+    .banner-atcon .grid > div:first-child img {
+        max-width: 50vw;
+        margin: 0 auto;
+    }
+
+    .banner-atcon .grid > div:last-child {
+        text-align: left;
+    }
 }
 
 .banner-atcon img {

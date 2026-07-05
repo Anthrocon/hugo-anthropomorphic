@@ -194,12 +194,19 @@
                         {{- end }}
                     {{- end }}" sizes="{{ $htmlSizes }}">
                 <img src="
-                    {{- ($src.Process (printf "resize %dx jpg%s" (index $cssContainers 0) $filter)).RelPermalink }}" alt="
+                    {{- if reflect.IsImageResourceProcessable $src}}
+                    {{- ($src.Process (printf "resize %dx jpg%s" (index $cssContainers 0) $filter)).RelPermalink }}
+                    {{- else }}
+                    {{- $src.RelPermalink }}
+                    {{- end }}" alt="
                     {{- with $alt }}
                         {{- . }}
                     {{- else }}
                         {{- $caption | markdownify | plainify }}
-                    {{- end }}" width="{{ $src.Width }}" height="{{ $src.Height }}">
+                    {{- end }}"
+                    {{- if reflect.IsImageResourceProcessable $src }}
+                    width="{{ $src.Width }}" height="{{ $src.Height }}"
+                    {{- end }}>
             </picture>
         {{- if $link }}
         </a>
