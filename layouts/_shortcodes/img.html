@@ -45,6 +45,9 @@
 {{- $caption := "" }}
 {{- $attr := "" }}
 {{- $attrlink := "" }}
+{{- $fbFmt := "jpg" }}
+{{- $fbMime := "image/jpeg" }}
+{{- $transparent := false }}
 {{- if .IsNamedParams }}
     {{- $src = .Page.Resources.Get (.Get "src") }}
     {{- if not $src }}
@@ -67,9 +70,13 @@
         {{- $filter = printf " %s" . }}
     {{- end }}
 
+    {{- with .Get "transparent" }}
+        {{- $transparent = . }}
+    {{- end }}
+
     {{- $link = .Get "link" }}
     {{- if eq $link "self" }}
-        {{- $link = ($src.Process (printf "resize %dx jpg%s" (math.Min $src.Width 2100 | int) $filter)).RelPermalink }}
+        {{- $link = ($src.Process (printf "resize %dx %s%s" (math.Min $src.Width 2100 | int) $fbFmt $filter)).RelPermalink }}
     {{- end }}
 
     {{- $caption = .Get "caption" }}
@@ -84,6 +91,11 @@
     {{- end }}
 
     {{- $alt = .Get 1 }}
+{{- end }}
+
+{{- if $transparent }}
+    {{- $fbFmt = "png" }}
+    {{- $fbMime = "image/png" }}
 {{- end }}
 
 {{- $cssColScale := 1.0 }}
@@ -186,16 +198,16 @@
                             {{- ($src.Process (printf "resize %sx webp%s%s" . $hint $filter)).RelPermalink }} {{ . }}w
                         {{- end }}
                     {{- end }}" sizes="{{ $htmlSizes }}">
-                <source type="image/jpeg" srcset="
+                <source type="{{ $fbMime }}" srcset="
                     {{- range $k, $e := $resWidths }}
                         {{- if ge $src.Width . }}
                             {{- if $k }}, {{ end }}
-                            {{- ($src.Process (printf "resize %sx jpg%s" . $filter)).RelPermalink }} {{ . }}w
+                            {{- ($src.Process (printf "resize %sx %s%s" . $fbFmt $filter)).RelPermalink }} {{ . }}w
                         {{- end }}
                     {{- end }}" sizes="{{ $htmlSizes }}">
                 <img src="
                     {{- if reflect.IsImageResourceProcessable $src}}
-                    {{- ($src.Process (printf "resize %dx jpg%s" (index $cssContainers 0) $filter)).RelPermalink }}
+                    {{- ($src.Process (printf "resize %dx %s%s" (index $cssContainers 0) $fbFmt $filter)).RelPermalink }}
                     {{- else }}
                     {{- $src.RelPermalink }}
                     {{- end }}" alt="
