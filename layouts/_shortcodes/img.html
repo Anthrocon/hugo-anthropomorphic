@@ -131,7 +131,7 @@
 {{- $htmlSizes = printf "%s100vw" $htmlSizes }}
 
 {{- $resWidths := slice }}
-{{- if hugo.IsProduction }}
+{{- if and hugo.IsProduction (reflect.IsImageResourceProcessable $src) }}
     {{- range $c := $cssContainers }}
         {{- range $s := $cssScales }}
             {{- $widths = $widths | append (mul $c $s | math.Ceil | int) }}
@@ -165,7 +165,7 @@
     {{- range $widthsCull }}
         {{- $resWidths = $resWidths | append (string .) }}
     {{- end }}
-{{- else }}
+{{- else if not hugo.IsProduction }}
     {{- $filter = " NearestNeighbor" }}
 {{- end }}
 
