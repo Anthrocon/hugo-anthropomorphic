@@ -126,13 +126,15 @@
             </div>
             {{- end }}
         </div>
-        {{- with .Params.banner_title }}
+        {{- if or .Params.banner_title .Params.banner_caption .Params.banner_button }}
         <div>
+            {{- with .Params.banner_title }}
             <h1>{{ . }}</h1>
-            {{- with $.Params.banner_caption }}
+            {{- end }}
+            {{- with .Params.banner_caption }}
             {{ . | $.RenderString (dict "display" "block") }}
             {{- end }}
-            {{- with $.Params.banner_button }}
+            {{- with .Params.banner_button }}
             <p><a role="button" href="{{ $.Params.banner_button_link }}">{{ . }}</a></p>
             {{- end }}
         </div>
