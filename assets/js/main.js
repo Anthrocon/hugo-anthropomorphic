@@ -1,4 +1,8 @@
 (() => {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
   const getScrollPosition = () => ({
     x: window.scrollX || document.documentElement.scrollLeft,
     y: window.scrollY || document.documentElement.scrollTop
